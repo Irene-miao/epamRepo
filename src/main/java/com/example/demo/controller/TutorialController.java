@@ -22,14 +22,21 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.model.Tutorial;
 import com.example.demo.repository.TutorialRepository;
 
+import jakarta.json.Json;
+
 @RestController
 @RequestMapping
 public class TutorialController {
 	  
+
+@Autowired
+TutorialRepository repo;
+
     @GetMapping(path="/tutorials")
     public ResponseEntity<String> getTutorial() {
          try { 
-
+            List<Tutorial> list = repo.findByPublished(true);
+            System.out.println(list);
          }catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
@@ -41,7 +48,7 @@ public class TutorialController {
 
          return ResponseEntity.status(HttpStatus.OK)
          .contentType(MediaType.APPLICATION_JSON)
-         .body(emotion);
+         .body();
     }
 
     @PostMapping(path="/tutorials/create")
@@ -60,7 +67,7 @@ public class TutorialController {
          return ResponseEntity.status(HttpStatus.OK)
          .contentType(MediaType.APPLICATION_JSON)
          .body(Json.createObjectBuilder()
-         .add("message", )
+         .add("message", "hello" )
          .build().toString());
          
 
