@@ -1,0 +1,4 @@
+com\example\demo\repository\TutorialRepository.class
+com\example\demo\DemoApplication.class
+com\example\demo\model\Tutorial.class
+com\example\demo\controller\TutorialController.class
